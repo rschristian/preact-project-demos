@@ -1,0 +1,40 @@
+.blog-post {
+  text-align: left;
+  max-width: 50rem;
+  margin: 2rem auto;
+  font-size: 1.2rem;
+  line-height: calc(1.5 * 1.2rem);
+
+  :is(h1, h2, h3, h4, h5, h6) {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: #ae80ff;
+
+    &:hover {
+      color: #ff89ff;
+    }
+  }
+
+  pre {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+
+    font-size: 1rem;
+    line-height: calc(1.5 * 1rem);
+  }
+
+  :not(pre) > code {
+    background-color: #404040;
+    margin: 0 0.25rem;
+    padding: 0.5px 4px;
+    border-radius: 4px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
