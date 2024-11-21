@@ -22,7 +22,6 @@ We use a couple plugins to facilitate the behavior we're after:
 
 - [`vite-plugin-static-copy`](https://npm.im/vite-plugin-static-copy)
   - Copies our markdown files to `./dist` (or keeps them in-memory in dev) and runs our transformer which converts markdown content to a JSON object containing the metadata & HTML content.
-  - We do use a tiny patch, as it normally runs too late in the build process. Moving it up a spot allows our prerenderer to read the files off of the disk. Hopefully this is something the plugin will make configurable in the future.
 - [`@preact/preset-vite`](https://npm.im/@preact/preset-vite)
   - Obviously provides Preact support, but also facilitates the prerendering
 
