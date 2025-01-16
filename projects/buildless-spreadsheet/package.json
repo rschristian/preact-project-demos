@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve:dev": "sirv src -D -p 3000",
+    "build": "node scripts/build.js",
+    "serve:prod": "sirv dist -p 3000",
+    "format": "prettier --write --ignore-path .gitignore ."
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.7",
+    "@preact/signals": "^2.0.0",
+    "htm": "^3.1.1",
+    "preact": "^10.25.4",
+    "prettier": "^2.8.8",
+    "prettier-config-rschristian": "^0.1.1",
+    "sirv-cli": "^3.0.0"
+  },
+  "prettier": "prettier-config-rschristian"
+}
