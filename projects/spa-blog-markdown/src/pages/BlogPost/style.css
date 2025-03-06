@@ -29,9 +29,11 @@
 
   :not(pre) > code {
     background-color: #404040;
-    margin: 0 0.25rem;
-    padding: 0.5px 4px;
+    padding: 2px 4px;
     border-radius: 4px;
+
+    font-size: 1rem;
+    line-height: calc(1.5 * 1rem);
   }
 
   img {
