@@ -1,10 +1,14 @@
-const cache = new Map();
+import { useState } from 'preact/hooks';
+
+const CACHE = new Map();
 
 /**
  * @param {string} slug
- * @returns {Promise<void>}
  */
-export const prefetchContent = (slug) => _prefetch(slug, fetchWrapper);
+export function prefetchContent(slug) {
+    if (CACHE.has(slug)) return;
+    setupCacheEntry(fetchWrapper, slug);
+}
 
 /**
  * @param {string} slug
@@ -37,15 +41,10 @@ async function fetchWrapper(url) {
  * @param {(url: string) => Promise<any>} cb
  */
 function useResource(url, cb) {
-    let data = cache.get(url);
-    if (!data) {
-        data = cb(url);
-        cache.set(url, data);
-        data.then(
-            (res) => (data.res = res),
-            (err) => (data.err = err),
-        );
-    }
+    const update = useState({})[1];
+
+    let data = CACHE.get(url);
+    if (!data) data = setupCacheEntry(cb, url, update);
 
     if (data.res) return data.res;
     if (data.err) {
@@ -56,16 +55,19 @@ function useResource(url, cb) {
 }
 
 /**
- * @param {string} url
- * @returns {Promise<void>}
+ * @param {(url: string) => Promise<any>} fn
+ * @param {string} cacheKey
+ * @param {(state: any) => void} [update]
+ * @returns {Promise<any> | { res?: any, err?: any }}
  */
-async function _prefetch(url, cb) {
-    if (cache.has(url)) return;
+function setupCacheEntry(fn, cacheKey, update) {
+    const data = fn(cacheKey);
 
-    const data = cb(url);
-    cache.set(url, data);
+    CACHE.set(cacheKey, data);
     data.then(
         (res) => (data.res = res),
         (err) => (data.err = err),
-    );
+    ).finally(() => update && update(data));
+
+    return data;
 }
