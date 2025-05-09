@@ -8,7 +8,9 @@ import path from 'node:path';
     const srcDir = path.resolve('src');
     const distDir = path.resolve('dist');
 
-    await fs.rm(distDir, { recursive: true });
+    try {
+        await fs.rm(distDir, { recursive: true });
+    } catch {}
     await fs.cp(srcDir, distDir, { recursive: true });
 
     const htmlPath = path.resolve(distDir, 'index.html');
