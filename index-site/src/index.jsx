@@ -54,8 +54,8 @@ function App() {
                     <Entry
                         title="Buildless Spreadsheet"
                         description="A spreadsheet app utilizing signals and a buildless approach, allowing you to import Preact from a CDN and use it directly in the browser. Taken largely from Surma's excellent 'My approach to coding interviews: Optimize for iteration' blog post."
-                        projectSlug="/spa-blog-markdown"
-                        subdomain="spa-blog-markdown"
+                        projectSlug="/buildless-spreadsheet"
+                        subdomain="buildless-spreadsheet"
                     />
                 </Subsection>
             </Main>
