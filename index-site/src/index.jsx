@@ -101,7 +101,7 @@ function Entry({ title, description, subdomain, projectSlug }) {
                     )}
                     <Link
                         href={`https://${subdomain}.preact-demos.rschristian.dev`}
-                        label="Service Documentation"
+                        label="Live Demo"
                         iconId="link"
                     />
                 </div>
