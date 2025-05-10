@@ -51,10 +51,13 @@ export class SpreadsheetData {
      * @returns {string} - JS code to eval the cell
      */
     generateCode = (cell) => {
-        const cellString = cell.value.replaceAll(/(?:^|\s)([a-zA-Z]\d+)\s?/g, (_, cellLabel) => {
-            const cellIdx = this.cellLabelToIdx(cellLabel);
-            return this.computedCells[cellIdx].value;
-        });
+        const cellString = cell.value
+            .replaceAll(/(?:^|\s)([a-zA-Z]\d+)\s?/g, (_, cellLabel) => {
+                const cellIdx = this.cellLabelToIdx(cellLabel);
+                return this.computedCells[cellIdx].value;
+            })
+            // Numbers with leading zeros are treated as octal literals
+            .replace(/^0+(\d)/, '$1');
 
         return `(function() {
             return ${cellString};
